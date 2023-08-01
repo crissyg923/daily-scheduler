@@ -7,7 +7,8 @@ currentDateText.text(date);
 var saveButton = $('.saveBtn');
 var scheduleEntryEl = $('.description');
 
-var currentHour = parseInt(dayjs().format('hour'));
+// var currentHour = parseInt(dayjs().format('hour'));
+var currentHour = dayjs().hour();
 console.log(currentHour);
 
 var hour9 = $('#hournine');
@@ -18,23 +19,26 @@ var hour1 = $('#hourone');
 var hour1 = $('#hourtwo');
 var hour3 = $('#hourthree');
 
-var scheduleBlock = $('currenthour');
+var scheduleBlock = $('.currenthour');
+console.log(scheduleBlock);
 
-
+// document.readyState(function () {
  scheduleBlock.each(function () {
-    var blockID = parseInt($(this).attr("id"));
-    console.log(blockID);
+    var blockID = parseInt($(this).attr("id").split("-")[1]);
+    // console.log(blockID);
     if (blockID === currentHour) {
       $(this).addClass("present");
       $(this).removeClass("past", "future");
-    } else if (blockID < now) {
+    } else if (blockID < currentHour) {
       $(this).addClass("past");
-      $(this.removeClass("present", "future"))
-    } else if (blockID > now) {
+      $(this).removeClass("present", "future");
+    } else if (blockID > currentHour) {
       $(this).addClass("future");
       $(this).removeClass("past", "present");
     }
-  });
+  })
+// });
+
 
 
 
