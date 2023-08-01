@@ -1,13 +1,47 @@
+
+
 var currentDateText = $('#currentDay');
 var date = dayjs().format('MMMM DD, YYYY');
 currentDateText.text(date);
+
+var saveButton = $('.saveBtn');
+var scheduleEntryEl = $('.description');
+
+var currentHour = parseInt(dayjs().format('hour'));
+console.log(currentHour);
+
+var hour9 = $('#hournine');
+var hour10 = $('#hourten');
+var hour11 = $('#houreleven');
+var hour12 = $('#hourtwelve');
+var hour1 = $('#hourone');
+var hour1 = $('#hourtwo');
+var hour3 = $('#hourthree');
+
+var scheduleBlock = $('currenthour');
+
+
+ scheduleBlock.each(function () {
+    var blockID = parseInt($(this).attr("id"));
+    console.log(blockID);
+    if (blockID === currentHour) {
+      $(this).addClass("present");
+      $(this).removeClass("past", "future");
+    } else if (blockID < now) {
+      $(this).addClass("past");
+      $(this.removeClass("present", "future"))
+    } else if (blockID > now) {
+      $(this).addClass("future");
+      $(this).removeClass("past", "present");
+    }
+  });
 
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+// $(function () {
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -26,4 +60,4 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+// });
