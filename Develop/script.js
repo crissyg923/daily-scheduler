@@ -22,7 +22,7 @@ var hour3 = $('#hourthree');
 var scheduleBlock = $('.currenthour');
 console.log(scheduleBlock);
 
-// document.readyState(function () {
+
  scheduleBlock.each(function () {
     var blockID = parseInt($(this).attr("id").split("-")[1]);
     // console.log(blockID);
@@ -37,7 +37,29 @@ console.log(scheduleBlock);
       $(this).removeClass("past", "present");
     }
   })
-// });
+
+// var userIput = scheduleEntryEl.val();
+// var saveLocal = function (){
+//   var saveID = parseInt($(this).attr("id"));
+//   var userIput = scheduleEntryEl.val();
+// userInput.each(function (){
+//   localStorage.setItem(saveID ,JSON.stringify(userIput))
+//   // var saveID = parseInt($(this).attr("id").split("-")[1]);
+// })
+// }
+saveButton.on('click', function () {
+  var userInput = scheduleEntryEl.val();
+  console.log(userInput);
+  // console.log(this);
+  // console.log(this.sibling);
+ var key = $(this).parent().attr("id");
+ var text = $(this).siblings(".description").val().trim();
+ console.log(key);
+ console.log (text);
+localStorage.setItem(key, text);
+  //   // var saveID = parseInt($(this).attr("id").split("-")[1]);
+  // })
+});
 
 
 
