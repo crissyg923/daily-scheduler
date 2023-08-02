@@ -3,23 +3,25 @@
 $( document ).ready(function() {
 
 
-
+// Code to add current date to top of page
 var currentDateText = $('#currentDay');
 var date = dayjs().format('dddd, MMMM DD, YYYY');
 currentDateText.text(date);
 
+// Elements pulled from the DOM
 var saveButton = $('.saveBtn');
 var scheduleEntryEl = $('.description');
 
-
+// Sets current time but hour number (1-23)
 var currentHour = dayjs().hour();
 console.log(currentHour);
 
-
+// Captures each schedule block
 var scheduleBlock = $('.currenthour');
 console.log(scheduleBlock);
 
-
+// Color codes schedule blocks according to if it's a past block, current
+// block, or future block
  scheduleBlock.each(function () {
     var blockID = parseInt($(this).attr("id").split("-")[1]);
     // console.log(blockID);
@@ -35,12 +37,10 @@ console.log(scheduleBlock);
     }
   })
 
-
+// Saves the item in local storage using the element's ID
 saveButton.on('click', function () {
   var userInput = scheduleEntryEl.val();
   console.log(userInput);
-  // console.log(this);
-  // console.log(this.sibling);
  var key = $(this).parent().attr("id");
  var text = $(this).siblings(".description").val().trim();
  console.log(key);
@@ -48,6 +48,8 @@ saveButton.on('click', function () {
 localStorage.setItem(key, text);
   
 });
+
+// Retrieves saved content from local storage
 $('#hour-9 .description').text(localStorage.getItem('hour-9'));
 $('#hour-10 .description').text(localStorage.getItem('hour-10'));
 $('#hour-11 .description').text(localStorage.getItem('hour-11'));
